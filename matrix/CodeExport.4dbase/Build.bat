@@ -1,4 +1,4 @@
-set component_dir=..\..\lib\CodeExport.4dbase
+set component_dir=..\..\component\CodeExport.4dbase
 set source_dir=.
 
 rmdir /Q /S %component_dir%

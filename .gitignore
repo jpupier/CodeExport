@@ -1,3 +1,5 @@
 
 /matrix/CodeExport.4dbase/*.4DLink
 /matrix/CodeExport.4dbase/CE_Dev.bat
+/matrix/CodeExport.4dbase/Logs
+/matrix/CodeExport.4dbase/Preferences

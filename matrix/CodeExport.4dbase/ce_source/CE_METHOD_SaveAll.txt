@@ -1,1 +1,71 @@
-﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.// --[HEADERSTART]-------------------------------------// User name (OS): jfletcher// Date and time: 04/05/12, 15:29:48// ----------------------------------------------------// Description://   Wrapper for CE_METHOD_Save, loop over all//   unsaved methods and save.////   Warning: paths should be validated before calling//   this method (see CE_METHOD_ValidateAll)// --[HEADEREND]---------------------------------------C_POINTER($1;$methodsToSave_p_at)C_LONGINT($0;$error_l)C_LONGINT($numMethods_l;$currentMethod_l;$progressBarID_l;$percent_l)C_TEXT($currentMethodPath_t)$methodsToSave_p_at:=$1$progressBarID_l:=0// Loop over each method to save...$numMethods_l:=Size of array($methodsToSave_p_at->)$currentMethod_l:=1If ($numMethods_l>0)While (($currentMethod_l<=$numMethods_l) & ($error_l=0))$currentMethodPath_t:=$methodsToSave_p_at->{$currentMethod_l}$percent_l:=($currentMethod_l/$numMethods_l)*100// Progress bar is only shown if operation will take a// long time (and not already open).If (($progressBarID_l=0) & PROG_ProgressRequired ($percent_l))$progressBarID_l:=Progress New // Move it to the lower-right to make slightly less obtrusive. Progress SET WINDOW VISIBLE (True;(Screen width-450);(Screen height-150))End if If ($progressBarID_l#0)If (Not(Progress Stopped ($progressBarID_l)))Progress SET TITLE ($progressBarID_l;<>CE_ComponentName_t+" Processing Methods")Progress SET PROGRESS ($progressBarID_l;$percent_l/100)// 4D Progress requires value between 0 and 1Progress SET MESSAGE ($progressBarID_l;String($currentMethod_l)+" of "+String($numMethods_l))End if End if // Save the method.If ($error_l=0)$error_l:=CE_METHOD_Save ($currentMethodPath_t)End if // Only increment if there was no error (in case I want to refer back to where I failed).If ($error_l=0)$currentMethod_l:=$currentMethod_l+1End if End while End if // Close the progress window if it was open.If ($progressBarID_l#0)Progress QUIT ($progressBarID_l)End if // Reset the counter for detecting of the progress bar should be shown.PROG_Reset $0:=$error_l
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): jfletcher
+// Date and time: 04/05/12, 15:29:48
+// ----------------------------------------------------
+// Description:
+//   Wrapper for CE_METHOD_Save, loop over all
+//   unsaved methods and save.
+//
+//   Warning: paths should be validated before calling
+//   this method (see CE_METHOD_ValidateAll)
+// --[HEADEREND]---------------------------------------
+C_POINTER($1;$methodsToSave_p_at)
+
+C_LONGINT($0;$error_l)
+
+C_LONGINT($numMethods_l;$currentMethod_l;$progressBarID_l;$percent_l)
+C_TEXT($currentMethodPath_t)
+
+$methodsToSave_p_at:=$1
+
+$progressBarID_l:=0
+
+// Loop over each method to save...
+$numMethods_l:=Size of array($methodsToSave_p_at->)
+$currentMethod_l:=1
+
+If ($numMethods_l>0)
+While (($currentMethod_l<=$numMethods_l) & ($error_l=0))
+
+$currentMethodPath_t:=$methodsToSave_p_at->{$currentMethod_l}
+$percent_l:=($currentMethod_l/$numMethods_l)*100
+
+// Progress bar is only shown if operation will take a
+// long time (and not already open).
+If (($progressBarID_l=0) & PROG_ProgressRequired ($percent_l))
+$progressBarID_l:=Progress New 
+// Move it to the lower-right to make slightly less obtrusive. 
+Progress SET WINDOW VISIBLE (True;(Screen width-450);(Screen height-150))
+End if 
+
+If ($progressBarID_l#0)
+If (Not(Progress Stopped ($progressBarID_l)))
+Progress SET TITLE ($progressBarID_l;<>CE_ComponentName_t+" Processing Methods")
+Progress SET PROGRESS ($progressBarID_l;$percent_l/100)// 4D Progress requires value between 0 and 1
+Progress SET MESSAGE ($progressBarID_l;String($currentMethod_l)+" of "+String($numMethods_l))
+End if 
+End if 
+
+// Save the method.
+If ($error_l=0)
+$error_l:=CE_METHOD_Save ($currentMethodPath_t)
+End if 
+
+// Only increment if there was no error (in case I want to refer back to where I failed).
+If ($error_l=0)
+$currentMethod_l:=$currentMethod_l+1
+End if 
+
+End while 
+End if 
+
+// Close the progress window if it was open.
+If ($progressBarID_l#0)
+Progress QUIT ($progressBarID_l)
+End if 
+
+// Reset the counter for detecting of the progress bar should be shown.
+PROG_Reset 
+
+$0:=$error_l

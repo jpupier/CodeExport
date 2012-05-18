@@ -1,1 +1,58 @@
-﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.// --[HEADERSTART]-------------------------------------// User name (OS): jfletcher// Date and time: 04/09/12, 16:04:22// ----------------------------------------------------// Description://   Goal: only display a progress bar if the operation//   will take a "long" time.////   This method estimates how long the operation will//   take to complete.  It's designed to be called in//   a loop.////   It returns False if the operation will be fast//   enough to skip the progress bar.//   It returns True if the operation will take too long.////   Input is the percentage complete of the current job.// --[HEADEREND]---------------------------------------C_LONGINT($1;$percent_l)C_BOOLEAN($0;$progressRequired_f)C_LONGINT(startTime_l;$currentTime_l;$estimatedDuration_l;$currentDuration_l)C_LONGINT($threshold_l)// If the operation is estimated to take longer than this, show a progress bar.$percent_l:=$1// Threshold for showing the progress bar, in ms.// Change this value if you want the progress bar to be// displayed sooner or later.$threshold_l:=1000$progressRequired_f:=False// Set the start time the first time this method is called.If (startTime_l=0)startTime_l:=MillisecondsEnd if // Get the current time.$currentTime_l:=Milliseconds// This is how long the job has been executing so far.$currentDuration_l:=$currentTime_l-startTime_l// Duration estimation is nothing fancy, just a linear// calculation based on how much is complete so far and// how long it took.$estimatedDuration_l:=($currentDuration_l*100)/$percent_l// Test the estimate against the threshold.If ($estimatedDuration_l>$threshold_l)$progressRequired_f:=TrueEnd if $0:=$progressRequired_f
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): jfletcher
+// Date and time: 04/09/12, 16:04:22
+// ----------------------------------------------------
+// Description:
+//   Goal: only display a progress bar if the operation
+//   will take a "long" time.
+//
+//   This method estimates how long the operation will
+//   take to complete.  It's designed to be called in
+//   a loop.
+//
+//   It returns False if the operation will be fast
+//   enough to skip the progress bar.
+//   It returns True if the operation will take too long.
+//
+//   Input is the percentage complete of the current job.
+// --[HEADEREND]---------------------------------------
+C_LONGINT($1;$percent_l)
+
+C_BOOLEAN($0;$progressRequired_f)
+
+C_LONGINT(startTime_l;$currentTime_l;$estimatedDuration_l;$currentDuration_l)
+C_LONGINT($threshold_l)// If the operation is estimated to take longer than this, show a progress bar.
+
+$percent_l:=$1
+
+// Threshold for showing the progress bar, in ms.
+// Change this value if you want the progress bar to be
+// displayed sooner or later.
+$threshold_l:=1000
+
+$progressRequired_f:=False
+
+// Set the start time the first time this method is called.
+If (startTime_l=0)
+startTime_l:=Milliseconds
+End if 
+
+// Get the current time.
+$currentTime_l:=Milliseconds
+
+// This is how long the job has been executing so far.
+$currentDuration_l:=$currentTime_l-startTime_l
+
+// Duration estimation is nothing fancy, just a linear
+// calculation based on how much is complete so far and
+// how long it took.
+$estimatedDuration_l:=($currentDuration_l*100)/$percent_l
+
+// Test the estimate against the threshold.
+If ($estimatedDuration_l>$threshold_l)
+$progressRequired_f:=True
+End if 
+
+
+$0:=$progressRequired_f

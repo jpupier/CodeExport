@@ -1,1 +1,2 @@
-﻿//%attributes = {"lang":"en"} comment added and reserved by 4D.UTIL_ERR_FORM_Copy 
+﻿//%attributes = {"lang":"en"} comment added and reserved by 4D.
+UTIL_ERR_FORM_Copy 

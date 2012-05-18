@@ -1,1 +1,2 @@
-﻿//%attributes = {"lang":"en"} comment added and reserved by 4D.CE_LOG_ShowLog 
+﻿//%attributes = {"lang":"en"} comment added and reserved by 4D.
+CE_LOG_ShowLog 

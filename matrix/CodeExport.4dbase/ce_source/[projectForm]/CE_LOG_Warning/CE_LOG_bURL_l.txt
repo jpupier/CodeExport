@@ -1,1 +1,2 @@
-﻿//%attributes = {"lang":"en"} comment added and reserved by 4D.OPEN WEB URL("http://doc.4d.com/4Dv13/help/Title/en/page701.html")
+﻿//%attributes = {"lang":"en"} comment added and reserved by 4D.
+OPEN WEB URL("http://doc.4d.com/4Dv13/help/Title/en/page701.html")

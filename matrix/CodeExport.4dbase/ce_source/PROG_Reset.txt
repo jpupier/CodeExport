@@ -1,1 +1,15 @@
-﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.// --[HEADERSTART]-------------------------------------// User name (OS): jfletcher// Date and time: 04/09/12, 16:10:22// ----------------------------------------------------// Description://   See PROG_ProgressRequired.////   This method resets the start time used estimating//   how long a job will take to complete (since it's a//   process var).  Call this method whenever the//   progress bar is closed.//// --[HEADEREND]---------------------------------------startTime_l:=0
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): jfletcher
+// Date and time: 04/09/12, 16:10:22
+// ----------------------------------------------------
+// Description:
+//   See PROG_ProgressRequired.
+//
+//   This method resets the start time used estimating
+//   how long a job will take to complete (since it's a
+//   process var).  Call this method whenever the
+//   progress bar is closed.
+//
+// --[HEADEREND]---------------------------------------
+startTime_l:=0

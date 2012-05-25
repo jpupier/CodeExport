@@ -1,0 +1,17 @@
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): Joshua Fletcher
+// Date and time: 05/22/12, 16:31:35
+// ----------------------------------------------------
+// Description:
+//   Return current component version.
+// --[HEADEREND]---------------------------------------
+C_LONGINT($0;$version_l)
+
+ARRAY TEXT($dontCare_at;0)
+
+METHOD GET PATHS(Path All objects ;$dontCare_at;<>CE_LastMethodStamp_l)
+
+$version_l:=<>CE_LastMethodStamp_l
+
+$0:=$version_l

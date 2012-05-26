@@ -19,13 +19,10 @@ C_LONGINT($currentVersion_l)
 
 C_TEXT($databaseName_t)
 C_TEXT($projectRoot_t)
-C_TEXT($binFolder_t)
 C_TEXT($componentFolder_t)
 C_TEXT($sourceMacros_t)
 C_TEXT($sourceResources_t)
-C_TEXT($pathToFinalize_t)
-C_TEXT($finalizeCommand_t)
-C_LONGINT($pidOf4D_l)
+
 
 CONFIRM("This will quit 4D in order to complete the build, okay?")
 
@@ -35,9 +32,6 @@ $databaseName_t:="CodeExport.4dbase"
 
 // Project root is 2 levels up from the database folder.
 $projectRoot_t:=UTIL_FILE_GetParent (UTIL_FILE_GetParent (Get 4D folder(Database Folder )))
-
-// This folder contains the script to finish the build (copy the sturcture files).
-$binFolder_t:=$projectRoot_t+"bin"+Folder separator 
 
 // This folder contains the component.
 $componentFolder_t:=$projectRoot_t+"component"+Folder separator +$databaseName_t+Folder separator 
@@ -70,14 +64,8 @@ COPY DOCUMENT($sourceResources_t;$componentFolder_t)
 // Create versioning file
 COPY DOCUMENT(Get 4D folder(Current Resources folder )+"version_template.txt";$componentFolder_t+String($currentVersion_l)+".txt")
 
-// Execute a script copy files after 4D has quit.
-// Copy structure <- Script
-// Copy INDY <- Script
-$pidOf4D_l:=PROCESS Get id 
-$pathToFinalize_t:=$binFolder_t+"ce_finalize.bat"
-$finalizeCommand_t:="cmd.exe /Cstart \"Build CodeExport\" \""+$pathToFinalize_t+"\""+" "+String($pidOf4D_l)
-SET ENVIRONMENT VARIABLE("_4D_OPTION_CURRENT_DIRECTORY";$binFolder_t)
-LAUNCH EXTERNAL PROCESS($finalizeCommand_t)
+// Execute a script that will copy files after 4D has quit.
+CE_BLD_Finalize ($projectRoot_t)
 
 QUIT 4D
 End if 

@@ -8,6 +8,8 @@
 // --[HEADEREND]---------------------------------------
 C_LONGINT($0;$version_l)
 
+C_LONGINT(<>CE_LastMethodStamp_l)
+
 ARRAY TEXT($dontCare_at;0)
 
 METHOD GET PATHS(Path All objects ;$dontCare_at;<>CE_LastMethodStamp_l)

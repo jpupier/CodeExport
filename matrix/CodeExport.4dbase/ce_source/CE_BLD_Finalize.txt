@@ -1,0 +1,33 @@
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// Execute a script copy files after 4D has quit.
+// Copy structure <- Script
+// Copy INDY <- Script
+C_TEXT($1;$projectRoot_t)
+
+C_TEXT($binFolder_t)
+C_LONGINT($pidOf4D_l)
+C_TEXT($pathToFinalize_t)
+C_TEXT($finalizeCommand_t)
+
+$projectRoot_t:=$1
+
+// This folder contains the script to finish the build (copy the sturcture files).
+$binFolder_t:=$projectRoot_t+"bin"+Folder separator 
+
+// This is the process ID of the 4D application (at the OS level).
+$pidOf4D_l:=PROCESS Get id 
+
+If (UTIL_IsMac )
+// Make sure 4D doesn't wait for LEP to finish.  Not necessary on Windows because I use "start".
+SET ENVIRONMENT VARIABLE("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"false")
+$pathToFinalize_t:="./ce_finalize.sh"
+$finalizeCommand_t:="bash "+$pathToFinalize_t+" "+String($pidOf4D_l)
+Else 
+$pathToFinalize_t:="ce_finalize.bat"
+$finalizeCommand_t:="cmd.exe /Cstart \"Build CodeExport\" \""+$pathToFinalize_t+"\""+" "+String($pidOf4D_l)
+End if 
+
+// Set the current directory in which the script file will execute.
+SET ENVIRONMENT VARIABLE("_4D_OPTION_CURRENT_DIRECTORY";$binFolder_t)
+
+LAUNCH EXTERNAL PROCESS($finalizeCommand_t)

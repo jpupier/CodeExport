@@ -1,5 +1,6 @@
 @echo off
 REM Final step when building CodeExport component, called by CE_BLD_Build method.
+REM Do not execute this script manually, it is called by CodeExport.
 
 REM Argument list:
 REM 1 - 4D application process ID  

@@ -1,5 +1,7 @@
 # /bin/bash
 # Final step when building CodeExport component, called by CE_BLD_Build method.
+# Do not execute this script manually, it is called by CodeExport.
+
 # Argument list:
 # 1 - 4D application process ID
 

@@ -52,6 +52,12 @@ $currentVersion_l:=CE_BLD_GetVersion
 // Delete old component
 UTIL_FILE_DeleteFolder ($componentFolder_t)
 
+// Mainly seems to be a problem in Widnows with the folder taking
+// some time to be "really" deleated (i.e. the next call to
+// CREATE FOLDER can fail).  Might wrap CREATE FOLDER to trap the
+// error and try again if this does not work.
+DELAY PROCESS(Current process;10)
+
 // Create new component folder
 CREATE FOLDER($componentFolder_t;*)
 

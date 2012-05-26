@@ -42,13 +42,9 @@ For ($currentFile_l;1;$numFolders_l)
 UTIL_FILE_DeleteFolder ($folder_t+$folderList_at{$currentFile_l})
 End for 
 
-// $count_l:=0
 // Delete the current (now empty) folder.
 DELETE FOLDER($folder_t)
 Repeat 
-// $count_l:=$count_l+1
 IDLE
 Until (Test path name($folder_t)#Is a folder )
 End if 
-
-// ALERT(String($count_l))

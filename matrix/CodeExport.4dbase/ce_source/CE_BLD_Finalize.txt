@@ -1,7 +1,13 @@
 ﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
-// Execute a script copy files after 4D has quit.
-// Copy structure <- Script
-// Copy INDY <- Script
+// --[HEADERSTART]-------------------------------------
+// User name (OS): Joshua Fletcher
+// Date and time: 05/25/12, 17:38:04
+// ----------------------------------------------------
+// Description:
+//    Execute a script copy files after 4D has quit.
+//    Copy structure <- Script
+//    Copy INDY <- Script
+// --[HEADEREND]---------------------------------------
 C_TEXT($1;$projectRoot_t)
 
 C_TEXT($binFolder_t)

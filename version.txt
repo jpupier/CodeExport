@@ -1,5 +1,0 @@
-20120518 - Build Complete
-20120518 - Build Complete
-20120518 - Build Complete
-20120518 - Build Complete
-This is a simple way to keep track of the component version, mainly for when building.  I don't recommend modifying this manually, the build script handles that.

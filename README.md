@@ -8,3 +8,5 @@ The "component" folder contains the interpreted component suitable for installat
 The "matrix" folder contains the component source code.
 
 The "doc" folder contains documentation about the component.
+
+If you modify the matrix database, you should build a new component.  To build a new component, execute the CE_BLD_Build method from the matrix database.

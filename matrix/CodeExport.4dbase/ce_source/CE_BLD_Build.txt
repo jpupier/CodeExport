@@ -34,7 +34,7 @@ $databaseName_t:="CodeExport.4dbase"
 $projectRoot_t:=UTIL_FILE_GetParent (UTIL_FILE_GetParent (Get 4D folder(Database Folder )))
 
 // This folder contains the component.
-$componentFolder_t:=$projectRoot_t+"component"+Folder separator +$databaseName_t+Folder separator 
+$componentFolder_t:=$projectRoot_t+"components"+Folder separator +$databaseName_t+Folder separator 
 
 // This folder contains necessary macros to run the component.
 $sourceMacros_t:=Get 4D folder(Database Folder )+"Macros v2"+Folder separator 

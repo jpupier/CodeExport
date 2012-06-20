@@ -44,7 +44,7 @@ GOTO CE_CopyFiles
 
 
 :CE_CopyFiles
-set component_dir=..\component\CodeExport.4dbase
+set component_dir=..\components\CodeExport.4dbase
 set source_dir=..\matrix\CodeExport.4dbase
 
 REM Files we need:

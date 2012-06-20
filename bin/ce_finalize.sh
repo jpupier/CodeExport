@@ -22,7 +22,7 @@ pause(){
 
 
 ce_copyFiles(){
-	component_dir='../component/CodeExport.4dbase'
+	component_dir='../components/CodeExport.4dbase'
 	source_dir='../matrix/CodeExport.4dbase'
 	
 	# Files we need:

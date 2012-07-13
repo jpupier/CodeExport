@@ -1,3 +1,0 @@
-This file represents the version number of the component.
-
-To build a new version, execute the "CE_BLD_Build" from the matrix database.

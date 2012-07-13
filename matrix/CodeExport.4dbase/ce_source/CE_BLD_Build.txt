@@ -6,7 +6,7 @@
 // Description:
 //   Build a new component version.
 //
-//   A "Build" is really a file copy of the interprted
+//   A "Build" is really a file copy of the interpreted
 //   structure and a few other files, plus a simple
 //   versioning system.
 //
@@ -22,7 +22,6 @@ C_TEXT($projectRoot_t)
 C_TEXT($componentFolder_t)
 C_TEXT($sourceMacros_t)
 C_TEXT($sourceResources_t)
-
 
 CONFIRM("This will quit 4D in order to complete the build, okay?")
 

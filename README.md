@@ -5,8 +5,6 @@ The CodeExport component facilitates automatic export of all methods in the host
 
 The "components" folder contains the interpreted component suitable for installation in any 4D v13 database.
 
-The "Plugins" folder contains the required plug-in Misc I for the component to function (from: http://sources.4d.com/trac/4d_keisuke/wiki/Plugins/MISC%20I)
-
 The "matrix" folder contains the component source code.
 
 The "doc" folder contains documentation about the component.

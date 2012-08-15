@@ -23,8 +23,22 @@ C_TEXT($pattern_t)
 
 $identifier_t:=$1
 
-// Note: \w is shorthand for alphanumeric or underscore, e.g. [a-zA-Z0-9_]
-$pattern_t:="\\w[\\w ]+\\w"
+// Note:
+// \w is shorthand for alphanumeric or underscore, e.g. [a-zA-Z0-9_]
+// \s is shorthand for whitespace, e.g. spaces, tabs, etc.
+$pattern_t:="^\\w[\\w ]*(?<!\\s)$"
+// A little explanation about this pattern:
+//
+//   ^ - matches the beginning of the value; this is a "zero-width" match
+//   \w - matches a single alpha, number, or underscore character; this is the minimum value for a 4D indentifier
+//   [\w ]* - matches 0 or more alpha, number, underscore, or space characters
+//   (?<!\s)$ - matches the end of the value, but then looks back to make sure the end of line $ wasn't preceded by any whitespace. In other words it rejects the value if it has trailing whitespace.
+//
+// Note that there is a flaw here. 4D does not allow table names to
+// start with numbers, but this pattern will allow it. However since
+// 4D doesn't allow you to create this case, I don't think it's
+// important to validate it.
+
 $isIdentifier_f:=Match regex($pattern_t;$identifier_t)
 
 $0:=$isIdentifier_f

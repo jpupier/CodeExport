@@ -11,7 +11,8 @@ C_POINTER($1;$pathsToValidate_p_at)
 
 C_LONGINT($0;$error_l)
 
-C_LONGINT($numPaths_l;$currentPath_l;$progressBarID_l;$percent_l;$dontcare_l)
+C_LONGINT($numPaths_l;$currentPath_l;$progressBarID_l;$dontcare_l)
+C_REAL($progress_r)
 C_TEXT($currentMethodPath_t)
 C_BOOLEAN($badPathsFound_f)
 
@@ -36,11 +37,11 @@ If ($error_l=0)
 While (($currentPath_l>=1) & ($error_l=0))
 
 $currentMethodPath_t:=$pathsToValidate_p_at->{$currentPath_l}
-$percent_l:=(($numPaths_l-$currentPath_l)/$numPaths_l)*100
+$progress_r:=($numPaths_l-$currentPath_l)/$numPaths_l
 
 // Progress bar is only shown if operation will take a
 // long time (and not already open).
-If (($progressBarID_l=0) & PROG_ProgressRequired ($percent_l))
+If (($progressBarID_l=0) & PROG_ProgressRequired ($progress_r))
 $progressBarID_l:=Progress New 
 // Move it to the lower-right to make slightly less obtrusive. 
 Progress SET WINDOW VISIBLE (True;(Screen width-450);(Screen height-150))
@@ -49,7 +50,7 @@ End if
 If ($progressBarID_l#0)
 If (Not(Progress Stopped ($progressBarID_l)))
 Progress SET TITLE ($progressBarID_l;<>CE_ComponentName_t+" Validating Method Paths")
-Progress SET PROGRESS ($progressBarID_l;$percent_l/100)// 4D Progress requires value between 0 and 1
+Progress SET PROGRESS ($progressBarID_l;$progress_r)
 Progress SET MESSAGE ($progressBarID_l;String($currentPath_l)+" of "+String($numPaths_l))
 End if 
 End if 

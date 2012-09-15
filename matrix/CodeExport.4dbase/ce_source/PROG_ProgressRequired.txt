@@ -15,16 +15,16 @@
 //   enough to skip the progress bar.
 //   It returns True if the operation will take too long.
 //
-//   Input is the percentage complete of the current job.
+//   Input is amount complete of the current job.
 // --[HEADEREND]---------------------------------------
-C_LONGINT($1;$percent_l)
+C_REAL($1;$progress_r)
 
 C_BOOLEAN($0;$progressRequired_f)
 
 C_LONGINT(startTime_l;$currentTime_l;$estimatedDuration_l;$currentDuration_l)
 C_LONGINT($threshold_l)// If the operation is estimated to take longer than this, show a progress bar.
 
-$percent_l:=$1
+$progress_r:=$1
 
 // Threshold for showing the progress bar, in ms.
 // Change this value if you want the progress bar to be
@@ -47,7 +47,7 @@ $currentDuration_l:=$currentTime_l-startTime_l
 // Duration estimation is nothing fancy, just a linear
 // calculation based on how much is complete so far and
 // how long it took.
-$estimatedDuration_l:=($currentDuration_l*100)/$percent_l
+$estimatedDuration_l:=$currentDuration_l/$progress_r
 
 // Test the estimate against the threshold.
 If ($estimatedDuration_l>$threshold_l)

@@ -1,19 +1,13 @@
 ﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
 // --[HEADERSTART]-------------------------------------
 // User name (OS): Joshua Fletcher
-// Date and time: 07/13/12, 16:42:46
+// Date and time: 10/11/12, 12:02:41
 // ----------------------------------------------------
 // Description:
-//   Get the process ID of the 4D application (at the
-//   OS level).
-//
-//   WARNING: plug-in dependency on "MISC I" plug-in:
-//   http://sources.4d.com/trac/4d_keisuke/wiki/Plugins/MISC%20I
-//   As the plug-in call is only needed for building,
-//   EXECUTE FORMULA is used to remove the compiler
-//   dependency from the component.
+//   Build requires MISC I plug-in, check to see if
+//   it's installed.
 // --[HEADEREND]---------------------------------------
-C_LONGINT($0;$pidOf4D_l)
+C_BOOLEAN($0;$isMiscIInstalled_f)
 
 C_TEXT($MiscI_t)
 
@@ -25,9 +19,9 @@ $MiscI_t:="MISC I"
 PLUGIN LIST($pluginNums_al;$pluginNames_at)
 
 If (Find in array($pluginNames_at;$MiscI_t)>-1)
-EXECUTE FORMULA("$pidOf4D_l:=PROCESS Get id ")
+$isMiscIInstalled_f:=True
 Else 
-$pidOf4D_l:=-1
+$isMiscIInstalled_f:=False
 End if 
 
-$0:=$pidOf4D_l
+$0:=$isMiscIInstalled_f

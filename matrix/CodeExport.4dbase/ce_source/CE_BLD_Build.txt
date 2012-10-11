@@ -23,6 +23,8 @@ C_TEXT($componentFolder_t)
 C_TEXT($sourceMacros_t)
 C_TEXT($sourceResources_t)
 
+If (CE_BLD_CheckForMiscI )
+
 CONFIRM("This will quit 4D in order to complete the build, okay?")
 
 If (OK=1)
@@ -73,4 +75,7 @@ COPY DOCUMENT(Get 4D folder(Current Resources folder )+"version_template.txt";$c
 CE_BLD_Finalize ($projectRoot_t)
 
 QUIT 4D
+End if 
+Else 
+ALERT("You cannot build without the MISC I plug-in.")
 End if 

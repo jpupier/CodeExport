@@ -21,7 +21,7 @@ $projectRoot_t:=$1
 $binFolder_t:=$projectRoot_t+"bin"+Folder separator 
 
 // This is the process ID of the 4D application (at the OS level).
-EXECUTE METHOD("UTIL_Get4DProcessID";$pidOf4D_l)
+$pidOf4D_l:=UTIL_Get4DProcessID 
 
 If (UTIL_IsMac )
 // Make sure 4D doesn't wait for LEP to finish.  Not necessary on Windows because I use "start".

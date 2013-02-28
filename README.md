@@ -1,3 +1,7 @@
+> ## IMPORTANT NOTE
+> 
+> CodeExport is unlikely to receive further updates. I have improved the design while making it more flexible and published as the [VC_Framework component](https://github.com/4D/vc-framework).
+
 # CodeExport
 
 ## Description
